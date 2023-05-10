@@ -15,7 +15,7 @@ defineProps({
 
 <style scoped>
 h1 {
-  font-weight: 500;
+  font-weight: bold;
   font-size: 2.6rem;
   top: -10px;
 }
