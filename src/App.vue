@@ -1,6 +1,6 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import SignInLogo from './components/SignInLogo.vue'
+import SignIn from './components/SignIn.vue'
 </script>
 
 <template>
@@ -8,12 +8,12 @@ import TheWelcome from './components/TheWelcome.vue'
     <img alt="GNI logo" class="logo" src="./assets/GNILogo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="GNI" />
+      <SignInLogo msg="GNI" />
     </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <SignIn />
   </main>
 </template>
 
