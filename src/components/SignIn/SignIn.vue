@@ -20,6 +20,7 @@ import SignInItems from './SignInItems.vue'
 
   <SignInItems>
     <button class="btn btn-primary">Sign in</button>
+    router.push('/home')
   </SignInItems>
 
   <SignInItems>
