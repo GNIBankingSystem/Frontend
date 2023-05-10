@@ -19,8 +19,7 @@ import SignInItems from './SignInItems.vue'
   </SignInItems>
 
   <SignInItems>
-    <button class="btn btn-primary">Sign in</button>
-    router.push('/home')
+    <router-link to="/" class="btn btn-primary" active-class="active">Teacher Login</router-link>
   </SignInItems>
 
   <SignInItems>
