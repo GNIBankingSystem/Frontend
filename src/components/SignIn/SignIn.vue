@@ -4,39 +4,33 @@ import SignInLogo from '../SignIn/SignInLogo.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="GNI logo" class="logo" src="../../assets/GNILogo.svg" />
+  <main>
+    <div>
+      <SignInItems>
+        <h1>Sign in</h1>
+      </SignInItems>
 
-    <div class="wrapper">
-      <SignInLogo msg="GNI" />
+      <SignInItems>
+        <template #heading>Email</template>
+        <input type="email" />
+      </SignInItems>
+
+      <SignInItems>
+        <template #heading>Password</template>
+        <input type="password" />
+
+      </SignInItems>
+
+      <SignInItems>
+        <router-link to="/" class="btn btn-primary" active-class="active">Login</router-link>
+      </SignInItems>
+
+      <SignInItems>
+        <a href="/resetpassword">Forgot password?</a><br>
+        No account <a href="/signup">Sign up</a>
+      </SignInItems>
     </div>
-  </header>
-
-  <div>
-  <SignInItems>
-    <h1>Sign in</h1>
-  </SignInItems>
-
-  <SignInItems>
-    <template #heading>Email</template>
-    <input type="email" />
-  </SignInItems>
-
-  <SignInItems>
-    <template #heading>Password</template>
-    <input type="password" />
-
-  </SignInItems>
-
-  <SignInItems>
-    <router-link to="/" class="btn btn-primary" active-class="active">Login</router-link>
-  </SignInItems>
-
-  <SignInItems>
-    <a href="/resetpassword">Forgot password?</a><br>
-    No account <a href="/signup">Sign up</a>
-  </SignInItems>
-  </div>
+  </main>
 </template>
 
 <style scoped>
