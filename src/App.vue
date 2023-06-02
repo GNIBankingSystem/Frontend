@@ -26,7 +26,7 @@ import Navbar from './components/Navigation/NavigationBar.vue'
 	--dark: #3C2E59;
 	--dark-alt: #2C294A;
 	--light: #f1f5f9;
-	--sidebar-width: 300px;
+	--sidebar-width: 250px;
 }
 
 * {
@@ -52,9 +52,10 @@ button {
 	display: flex;
 
 	main {
+		color: white;
 		flex: 1 1 0;
 		padding: 2rem;
-    background-color: #483763;
+    	background-color: #483763;
 
 		@media (max-width: 1024px) {
 			padding-left: 6rem;
