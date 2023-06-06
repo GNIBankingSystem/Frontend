@@ -1,13 +1,17 @@
 <script setup>
-import BalanceCard from '../Dashboard/BalanceCard.vue'
+import AccountSymmary from '../Accounts/AccountSummary.vue'
+import AccountList from '../Accounts/AccountList.vue'
 </script>
 
 <template>
 	<main id="account-page">
-		<h1>Welcome [User]</h1>
+		<h1>Accounts</h1>
 		<div class="col-12">
-			<BalanceCard></BalanceCard>
+			<AccountSymmary></AccountSymmary>
 		</div>
+        <div id="accountList" class="col-12">
+            <AccountList></AccountList>
+        </div>
 		
 	</main>
 </template>
@@ -19,10 +23,8 @@ import BalanceCard from '../Dashboard/BalanceCard.vue'
 		-ms-flex: 0 0 100%;
 		flex: 0 0 100%;
 		max-width: 100%;
-	}
 
-	.col-lg-6 {
-		padding: 12px;
+        margin-bottom: 2rem;
 	}
 }
 </style>

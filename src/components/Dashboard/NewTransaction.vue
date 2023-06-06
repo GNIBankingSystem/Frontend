@@ -13,17 +13,9 @@
                     <label for="fullname">Full name:</label><br>
                     <input type="text" class="form-control" name="fullname" id="fullname">
                 </div>
-                <div class="form-group" id="amountReasonDiv">
-                    <table>
-                        <tr>
-                            <td><label for="amount">Amount:</label></td>
-                            <td><label for="reason">Reason:</label></td>
-                        </tr>
-                        <tr>
-                            <td><input type="double" class="form-control" name="amount" id="amount"></td>
-                            <td><input type="text" class="form-control" name="reason" id="reason"></td>
-                        </tr>
-                    </table>
+                <div class="form-group" id="amountDiv">
+                    <label for="amount">Amount:</label><br>
+                    <td><input type="double" class="form-control" name="amount" id="amount"></td>
                 </div>
                 <div class="button">
                     <button type="submit" class="btn btn-primary">Send</button>

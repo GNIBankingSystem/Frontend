@@ -1,28 +1,33 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <h1>Recent Transactions</h1>
+            <h1>Transactions of account: </h1>
+            <select name="account" id="account">
+                <option value="account1">Account 1</option>
+                <option value="account2">Account 2</option>
+                <option value="account3">Account 3</option>
+            </select>
         </div>
         <div class="card-body">
-            <Table class="table table-sm">
+            <Table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">From</th>
-                        <th scope="col">To</th>
+                        <th scope="col">From account</th>
+                        <th scope="col">To account</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>John Doe</td>
-                        <td>John Doe</td>
+                        <td>John Doe Current account</td>
+                        <td>Amazon prime</td>
                         <td>- € 525,00</td>
-                        <td>01-01-2021</td>
+                        <td>02-01-2021</td>
                     </tr>
                     <tr>
-                        <td>John Doe</td>
-                        <td>John Doe</td>
+                        <td>John Doe Savings account</td>
+                        <td>John Doe Current account</td>
                         <td>- € 525,00</td>
                         <td>01-01-2021</td>
                     </tr>

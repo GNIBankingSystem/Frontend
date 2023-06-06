@@ -20,7 +20,7 @@
 				<span class="material-icons">wallet</span>
 				<span class="text">Accounts</span>
 			</router-link>
-			<router-link to="/transfers" class="button">
+			<router-link to="/transfer" class="button">
 				<span class="material-icons">payments</span>
 				<span class="text">Transfer</span>
 			</router-link>
