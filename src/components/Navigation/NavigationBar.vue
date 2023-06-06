@@ -22,7 +22,7 @@
 			</router-link>
 			<router-link to="/transfers" class="button">
 				<span class="material-icons">payments</span>
-				<span class="text">Transfers</span>
+				<span class="text">Transfer</span>
 			</router-link>
 			<router-link to="/transactions" class="button">
 				<span class="material-icons">receipt</span>

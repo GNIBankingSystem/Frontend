@@ -1,21 +1,14 @@
 <script setup>
 import BalanceCard from '../Dashboard/BalanceCard.vue'
-import RecentTransaction from '../Dashboard/RecentTransactions.vue'
-import Transaction from '../Dashboard/NewTransaction.vue'
 </script>
 
 <template>
-	<main id="Home-page">
+	<main id="account-page">
 		<h1>Welcome [User]</h1>
-		<div class="col-lg-6 col-12">
+		<div class="col-12">
 			<BalanceCard></BalanceCard>
 		</div>
-		<div class="col-lg-6 col-12">
-			<RecentTransaction></RecentTransaction>
-		</div>
-		<div class="col-lg-6 col-12">
-			<Transaction></Transaction>
-		</div>
+		
 	</main>
 </template>
 
