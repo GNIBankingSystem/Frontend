@@ -16,11 +16,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>NL01INHO0000000002</td>
-                        <td>Current</td>
-                        <td>€ 549,00</td>
+                    <tr v-for="(account, index) in accounts" :key="account.id">
+                        <th scope="row">{{ index + 1 }}</th>
+                        <td>{{ account.id }}</td>
+                        <td>{{ account.type }}</td>
+                        <td>{{ formatCurrency(account.balance) }}</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -36,12 +36,39 @@
                     </tr>
                 </tbody>
             </Table>
+                <p v-if="loading">Loading...</p>
+                <p v-else-if="error">An error occurred: {{ error }}</p>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+    return {
+      accounts: [],
+      loading: false,
+      error: null,
+    };
+  },
+  created() {
+    const userId = NL01INHO0000000001; // Replace with the actual user ID
+    this.fetchAccounts(userId);
+  },
+  methods: {
+    fetchAccounts(userId) {
+      this.loading = true;
+      axios.get(`http://localhost:8080/accounts/${userId}`)
+        .then(response => {
+          this.accounts = response.data;
+          this.loading = false;
+        })
+        .catch(error => {
+          this.error = error;
+          this.loading = false;
+        });
+    },
+  },
 
 }
 </script>
