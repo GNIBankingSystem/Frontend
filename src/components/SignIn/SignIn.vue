@@ -2,6 +2,7 @@
 import SignInItems from '../SignIn/SignInItems.vue'
 import SignInLogo from '../SignIn/SignInLogo.vue'
 import axios from '../../axios-auth.js';
+import { useCounterStore } from '@/stores/counter'
 </script>
 
 <template>
@@ -31,6 +32,10 @@ import axios from '../../axios-auth.js';
 <script>
 export default {
   name: "Login",
+  setup() {
+    const store = useCounterStore()
+    return { store }
+  },
   data() {
     return {
       username: "",
@@ -47,8 +52,6 @@ export default {
         .then((res) => {
           localStorage.setItem('jwt', res.data.jwt);
           localStorage.setItem('username', res.data.username);
-
-          console.log(res.data.jwt);
 
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.jwt;
 
