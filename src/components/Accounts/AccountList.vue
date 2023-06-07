@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import axios from '../../axios-auth.js'
 export default {
     data() {
     return {
@@ -52,13 +53,13 @@ export default {
     };
   },
   created() {
-    const userId = NL01INHO0000000001; // Replace with the actual user ID
+    const userId = 1; // Replace with the actual user ID
     this.fetchAccounts(userId);
   },
   methods: {
     fetchAccounts(userId) {
       this.loading = true;
-      axios.get(`http://localhost:8080/accounts/${userId}`)
+      axios.get(`accounts?userId=${userId}`)
         .then(response => {
           this.accounts = response.data;
           this.loading = false;
