@@ -19,6 +19,9 @@ import Transaction from '../Dashboard/NewTransaction.vue'
 	</main>
 </template>
 
+<script>
+</script>
+
 <style lang="scss" scoped>
 @media (min-width: 1264px) {
 	.col-12 {
