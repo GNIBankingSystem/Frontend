@@ -6,7 +6,7 @@ import Transaction from '../Dashboard/NewTransaction.vue'
 
 <template>
 	<main id="Home-page">
-		<h1>Welcome [User]</h1>
+		<h1>Welcome {{ this.store.username }}</h1>
 		<div class="col-lg-6 col-12">
 			<BalanceCard></BalanceCard>
 		</div>
@@ -18,6 +18,17 @@ import Transaction from '../Dashboard/NewTransaction.vue'
 		</div>
 	</main>
 </template>
+
+<script>
+import { useCounterStore } from '@/stores/counter'
+export default {
+	name: 'Home',
+	setup() {
+		const store = useCounterStore()
+		return { store }
+	},
+}
+</script>
 
 <style lang="scss" scoped>
 @media (min-width: 1264px) {
