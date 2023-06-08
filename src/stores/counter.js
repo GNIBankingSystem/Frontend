@@ -27,8 +27,8 @@ export const useCounterStore = defineStore('counter', {
           this.token = res.data.token;
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
 
-          localStorage.setItem('jwt', result.data.token);
-          localStorage.setItem('username', result.data.username);
+          localStorage.setItem('jwt', res.data.token);
+          localStorage.setItem('username', res.data.username);
         })
         .catch((error) => console.log(error));
     },
