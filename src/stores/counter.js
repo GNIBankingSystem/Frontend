@@ -17,17 +17,21 @@ export const useCounterStore = defineStore('counter', {
     },
     login(username, password) {
       axios
-      .post("login", {
-      username: username,
-      password: password,
-      })
-      .then((res) => {
-      console.log(res.data);
-      this.username = res.data.username;
-      this.token = res.data.token;
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
-      })
-      .catch((error) => console.log(error));
-      },
+        .post("login", {
+          username: username,
+          password: password,
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.username = res.data.username;
+          this.token = res.data.token;
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
+
+          localStorage.setItem('jwt', result.data.token);
+          localStorage.setItem('username', result.data.username);
+        })
+        .catch((error) => console.log(error));
+    },
+    
   },
 })

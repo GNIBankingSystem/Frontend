@@ -60,11 +60,6 @@ export default {
     methods: {
         fetchAccounts(userId) {
             this.loading = true;
-            const store = useCounterStore();
-            console.log('store.token: ' + store.token);
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.token;
-            console.log(axios.defaults.headers.common['Authorization'].toString());
-
             axios.get('accounts')
                 .then(response => {
                     this.accounts = response.data;
