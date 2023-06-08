@@ -36,40 +36,46 @@
                     </tr>
                 </tbody>
             </Table>
-                <p v-if="loading">Loading...</p>
-                <p v-else-if="error">An error occurred: {{ error }}</p>
+            <p v-if="loading">Loading...</p>
+            <p v-else-if="error">An error occurred: {{ error }}</p>
         </div>
     </div>
 </template>
 
 <script>
 import axios from '../../axios-auth.js'
+import { useCounterStore } from '../../stores/counter.js'
 export default {
     data() {
-    return {
-      accounts: [],
-      loading: false,
-      error: null,
-    };
-  },
-  created() {
-    const userId = 1; // Replace with the actual user ID
-    this.fetchAccounts(userId);
-  },
-  methods: {
-    fetchAccounts(userId) {
-      this.loading = true;
-      axios.get(`accounts?userId=${userId}`)
-        .then(response => {
-          this.accounts = response.data;
-          this.loading = false;
-        })
-        .catch(error => {
-          this.error = error;
-          this.loading = false;
-        });
+        return {
+            accounts: [],
+            loading: false,
+            error: null,
+        };
     },
-  },
+    mounted() {
+        const userId = 1; // Replace with the actual user ID
+        this.fetchAccounts(userId);
+    },
+    methods: {
+        fetchAccounts(userId) {
+            this.loading = true;
+            const store = useCounterStore();
+            console.log('store.token: ' + store.token);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.token;
+            console.log(axios.defaults.headers.common['Authorization'].toString());
+
+            axios.get('accounts')
+                .then(response => {
+                    this.accounts = response.data;
+                    this.loading = false;
+                })
+                .catch(error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+        },
+    },
 
 }
 </script>

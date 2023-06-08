@@ -24,7 +24,8 @@ export const useCounterStore = defineStore('counter', {
       .then((res) => {
       console.log(res.data);
       this.username = res.data.username;
-      this.token = res.data.jwt;
+      this.token = res.data.token;
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
       })
       .catch((error) => console.log(error));
       },
