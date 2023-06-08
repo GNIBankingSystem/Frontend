@@ -45,13 +45,13 @@ export default {
     },
     mounted() {
         const store = useCounterStore();
-        const userId = store.userId;
+        const userId = store.id;
         this.fetchAccounts(userId);
     },
     methods: {
         fetchAccounts(userId) {
             this.loading = true;
-            axios.get('accounts?userId='+2) //TODO: get real userid
+            axios.get('accounts?userId='+userId)
                 .then(response => {
                     this.accounts = response.data;
                     this.loading = false;
