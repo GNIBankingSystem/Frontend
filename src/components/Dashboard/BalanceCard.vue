@@ -1,3 +1,8 @@
+<script setup>
+import logoURL from '../../assets/GNILogo.svg'
+import CirclesOnCardURL from '../../assets/CirclesOnCard.png'
+</script>
+
 <template>
     <div class="card">
         <div class="card-header">
@@ -8,17 +13,47 @@
         </div>
         <div class="card-body">
             <div>
-                <h2> NL01 INHO 0000 0000 01</h2>
-                <h2> € 525,00 </h2>
+                <h2> {{ accounts[0].id }}</h2>
+                <h2> {{ formatCurrency(accounts[0].balance) }} </h2>
             </div>
             <img :src="CirclesOnCardURL" alt="" width="100"/>
         </div>
     </div>
 </template>
 
-<script setup>
-import logoURL from '../../assets/GNILogo.svg'
-import CirclesOnCardURL from '../../assets/CirclesOnCard.png'
+<script>
+import axios from '../../axios-auth.js'
+import { useCounterStore } from '../../stores/counter.js'
+export default {
+    data() {
+        return {
+            accounts: [],
+        };
+    },
+    mounted() {
+        const store = useCounterStore();
+        const userId = store.id;
+        this.fetchAccounts(userId);
+    },
+    methods: {
+        fetchAccounts(userId) {
+            axios.get('accounts?userId='+userId)
+                .then(response => {
+                    this.accounts = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        formatCurrency(value) {
+            return new Intl.NumberFormat('nl-NL', {
+                style: 'currency',
+                currency: 'EUR'
+            }).format(value);
+        },
+    },
+
+}
 </script>
 
 <style lang="scss" scoped>
