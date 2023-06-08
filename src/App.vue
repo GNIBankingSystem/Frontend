@@ -14,6 +14,9 @@ export default {
 			counterStore
 		}
 	},
+	mounted() {
+		useCounterStore().autoLogin();
+	}
 	
 }
 </script>
