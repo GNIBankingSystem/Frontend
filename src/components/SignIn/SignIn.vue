@@ -2,8 +2,8 @@
 import SignInItems from '../SignIn/SignInItems.vue';
 import SignInLogo from '../SignIn/SignInLogo.vue';
 import axios from '../../axios-auth.js';
-import { useCounterStore } from '../../stores/counter.js';
-//import { counter } from "../../stores/counter.js";
+import { useCounterStore } from '../../stores/counter.js'
+const store = useCounterStore()
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import { useCounterStore } from '../../stores/counter.js';
       <div class="row">
         <div class="col-md-6">
           <form>
-            <h2>SignIn</h2>
+            <h2>Sign In</h2>
             <div class="mb-3">
               <label for="inputUsername" class="form-label">Username</label>
               <input id="inputUsername" v-model="loginUsername" type="text" class="form-control" />
@@ -22,7 +22,7 @@ import { useCounterStore } from '../../stores/counter.js';
               <input type="password" v-model="password" class="form-control" id="inputPassword" />
             </div>
             <button type='button' @click="login" class="btn btn-primary">Login</button><br>
-            <a href="/forgotpassword">No account, register</a>
+            <a href="/signup">No account, register</a>
           </form>
         </div>
       </div>
@@ -33,7 +33,7 @@ import { useCounterStore } from '../../stores/counter.js';
 <script>
 
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     return {
       loginUsername: "",
@@ -42,33 +42,12 @@ export default {
   },
   methods: {
     login() {
-      const store = useCounterStore();
-      store.login(this.loginUsername, this.password)
-        .then(() => {
-          localStorage.setItem('jwt', store.getToken);
-          localStorage.setItem('username', store.getUsername);
-
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getToken;
-
-          this.$router.push('/');
-          //store.setUsername()
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const store = useCounterStore()
+      store.login(this.loginUsername, this.password);
+      this.$router.push('/');
     },
   },
-  computed: {
-    token() {
-      const store = useCounterStore();
-      return store.getToken;
-    },
-    username() {
-      const store = useCounterStore();
-      return store.getUsername;
-    }
-  },
-};
+}
 </script>
 
 <style scoped>

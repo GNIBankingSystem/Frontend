@@ -2,11 +2,13 @@
 import BalanceCard from '../Dashboard/BalanceCard.vue'
 import RecentTransaction from '../Dashboard/RecentTransactions.vue'
 import Transaction from '../Dashboard/NewTransaction.vue'
+import { useCounterStore } from '../../stores/counter.js'
+const store = useCounterStore()
 </script>
 
 <template>
 	<main id="Home-page">
-		<h1>Welcome {{ username }}</h1>
+		<h1>Welcome {{ store.username }}</h1>
 		<div class="col-lg-6 col-12">
 			<BalanceCard></BalanceCard>
 		</div>
@@ -24,13 +26,8 @@ import { useCounterStore } from '../../stores/counter.js'
 export default {
 	name: 'Home',
 	setup() {
-    const store = useCounterStore();
-    const username = ref(store.getUsername);
-
-    return {
-      username
-    };
-  }
+		
+	}
 };
 </script>
 
