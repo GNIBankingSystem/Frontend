@@ -9,30 +9,20 @@
             <Table class="table table">
                 <thead>
                     <tr>
-                        <th scope="col"></th>
                         <th scope="col">IBAN</th>
                         <th scope="col">Type</th>
                         <th scope="col">Balance</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(account, index) in accounts" :key="account.id">
-                        <th scope="row">{{ index + 1 }}</th>
                         <td>{{ account.id }}</td>
                         <td>{{ account.type }}</td>
                         <td>{{ formatCurrency(account.balance) }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>NL01INHO0000000003</td>
-                        <td>Savings</td>
-                        <td>€ 10.000,42</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>NL01INHO0000000004</td>
-                        <td>Savings</td>
-                        <td>€ 3.045,01</td>
+                        <td>
+                            <button class="btn btn-primary">View</button>
+                        </td>
                     </tr>
                 </tbody>
             </Table>
@@ -54,13 +44,14 @@ export default {
         };
     },
     mounted() {
-        const userId = 1; // Replace with the actual user ID
+        const store = useCounterStore();
+        const userId = store.userId;
         this.fetchAccounts(userId);
     },
     methods: {
         fetchAccounts(userId) {
             this.loading = true;
-            axios.get('accounts')
+            axios.get('accounts?userId='+2) //TODO: get real userid
                 .then(response => {
                     this.accounts = response.data;
                     this.loading = false;

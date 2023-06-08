@@ -6,19 +6,55 @@
         </div>
         <div class="card-body">
             <div>
-                <h2>3</h2>
+                <h2>{{ accounts.length }}</h2>
             </div>
             <div>
-                <h2>13.594,43</h2>
+                <h2>{{ getTotalBalance() }}</h2>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import axios from '../../axios-auth.js'
+import { useCounterStore } from '../../stores/counter.js'
+export default {
+    data() {
+        return {
+            accounts: [],
+        };
+    },
+    mounted() {
+        const store = useCounterStore();
+        const userId = store.userId;
+        this.fetchAccounts(userId);
+    },
+    methods: {
+        fetchAccounts(userId) {
+            axios.get('accounts?userId='+2) //TODO: get real userid
+                .then(response => {
+                    this.accounts = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        formatCurrency(value) {
+            return new Intl.NumberFormat('nl-NL', {
+                style: 'currency',
+                currency: 'EUR'
+            }).format(value);
+        },
+        getTotalBalance(){
+            var totalBalance = 0;
+            this.accounts.forEach(account => {
+                totalBalance += account.balance;
+            });
+            return this.formatCurrency(totalBalance);
+        },
+    },
+
+}
 </script>
 
 <style lang="scss" scoped>
