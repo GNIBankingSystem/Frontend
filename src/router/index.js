@@ -8,6 +8,8 @@ import Accounts from '../components/Accounts/Accounts.vue';
 import Transactions from '../components/Transactions/Transactions.vue';
 import Transfer from '../components/Transfer/Transfer.vue';
 import AccountManagement from '../components/AccountManagement/AccountManagement.vue';
+import NewAccount from '../components/AccountManagement/NewAccount.vue';
+import EditAccount from '../components/AccountManagement/EditAccount.vue';
 import TransactionManagement from '../components/TransactionManagement/TransactionManagement.vue';
 import UserManagement from '../components/UserManagement/UserManagement.vue';
 
@@ -23,6 +25,8 @@ const router = createRouter({
     { path: '/transactions', component: Transactions},
     { path: '/transfer', component: Transfer},
     { path: '/accountmanagement', component: AccountManagement},
+    { path: '/accountmanagement/newaccount', component: NewAccount},
+    { path: '/accountmanagement/editaccount/:id', component: EditAccount, props: true},
     { path: '/transactionmanagement', component: TransactionManagement},
     { path: '/usermanagement', component: UserManagement},
   ]

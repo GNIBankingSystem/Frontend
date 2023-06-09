@@ -13,11 +13,7 @@ export default {
 		return {
 			counterStore
 		}
-	},
-	mounted() {
-		this.$router.push('/login');
-	}
-	
+	},	
 }
 </script>
 

@@ -17,8 +17,9 @@
             </select>
 
             <div>
-                &nbsp;<button class="btn btn-primary" @click="fetchAccounts"><span class="material-icons">search</span></button>
-                &nbsp;<button class="btn btn-success"><span class="material-icons">add</span></button>
+                &nbsp;<button class="btn btn-primary" @click="fetchAccounts"><span
+                        class="material-icons">search</span></button>
+                &nbsp;<router-link to="/accountmanagement/newaccount" class="btn btn-success"><span class="material-icons">add</span></router-link>
             </div>
         </div>
         <div class="card-body">
@@ -41,8 +42,8 @@
                         <td>{{ formatCurrency(account.balance) }}</td>
                         <td>{{ account.status }}</td>
                         <td>
-                            <button class="btn btn-warning">Edit</button>
-                            <button @click="softDelete(account.id)" class="btn btn-danger">Delete</button>
+                            <button @click="editAccount(account.id)" class="btn btn-warning">Edit account</button>
+                            <button @click="softDelete(account.id)" class="btn btn-secondary">Change status</button>
                         </td>
                     </tr>
                 </tbody>
@@ -66,7 +67,7 @@ export default {
             filter: {
                 type: 'all',
                 status: 'all',
-                userId:'',
+                userId: '',
                 offset: 0,
                 limit: 10,
             }
@@ -79,7 +80,7 @@ export default {
         fetchAccounts() {
             this.loading = true;
             var url = "accounts?type=" + this.filter.type + "&status=" + this.filter.status + "&offset=" + this.filter.offset + "&limit=" + this.filter.limit;
-            if(this.filter.userId != ""){
+            if (this.filter.userId != "") {
                 url += "&userId=" + this.filter.userId
             }
             axios.get(url)
@@ -93,13 +94,16 @@ export default {
                 });
         },
         softDelete(id) {
-            axios.delete("accounts/"+id)
+            axios.delete("accounts/" + id)
                 .then(response => {
                     this.fetchAccounts();
                 })
                 .catch(error => {
                     this.error = error;
                 });
+        },
+        editAccount(id) {
+            this.$router.push("/accountmanagement/editaccount/" + id)
         },
         formatCurrency(value) {
             return new Intl.NumberFormat('nl-NL', {
