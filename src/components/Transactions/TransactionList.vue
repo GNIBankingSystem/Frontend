@@ -3,9 +3,9 @@
     <div class="card-header">
       <h1>Transactions of account:</h1>
       <select name="account" id="account">
-        <option value="account1">Spaarrekening : 12312</option>
-        <option value="account2">Account 2</option>
-        <option value="account3">Account 3</option>
+        <option value="account1">Savings :</option>
+        <option value="account2">Current : 2</option>
+        <option value="account3">Student : 3</option>
       </select>
     </div>
     <div class="card-body">
