@@ -1,8 +1,8 @@
 <script setup>
+import { useCounterStore } from '../../stores/counter.js'
 import BalanceCard from '../Dashboard/BalanceCard.vue'
 import RecentTransaction from '../Dashboard/RecentTransactions.vue'
 import Transaction from '../Dashboard/NewTransaction.vue'
-import { useCounterStore } from '../../stores/counter.js'
 const store = useCounterStore()
 </script>
 
@@ -24,7 +24,7 @@ const store = useCounterStore()
 <script>
 import { useCounterStore } from '../../stores/counter.js'
 export default {
-	name: 'Home',
+	name: 'Homee',
 	setup() {
 		
 	}

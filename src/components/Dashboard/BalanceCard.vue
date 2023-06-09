@@ -13,8 +13,8 @@ import CirclesOnCardURL from '../../assets/CirclesOnCard.png'
         </div>
         <div class="card-body">
             <div>
-                <h2> {{ accounts[0].id }}</h2>
-                <h2> {{ formatCurrency(accounts[0].balance) }} </h2>
+                <h2> <!--{{ accounts[0].id }}--></h2>
+                <h2> <!--{{ formatCurrency(accounts[0].balance) }}--> </h2>
             </div>
             <img :src="CirclesOnCardURL" alt="" width="100"/>
         </div>
@@ -31,13 +31,12 @@ export default {
         };
     },
     mounted() {
-        const store = useCounterStore();
-        const userId = store.id;
-        this.fetchAccounts(userId);
+        this.fetchAccounts();
     },
     methods: {
-        fetchAccounts(userId) {
-            axios.get('accounts?userId='+userId)
+        fetchAccounts() {
+            const store = useCounterStore();
+            axios.get('accounts?userId='+store.id)
                 .then(response => {
                     this.accounts = response.data;
                 })

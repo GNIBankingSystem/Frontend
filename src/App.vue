@@ -15,7 +15,7 @@ export default {
 		}
 	},
 	mounted() {
-		useCounterStore().autoLogin();
+		this.$router.push('/login');
 	}
 	
 }

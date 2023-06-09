@@ -35,14 +35,5 @@ export const useCounterStore = defineStore('counter', {
         })
         .catch((error) => console.log(error));
     },
-    autoLogin() {
-      const token = localStorage.getItem('jwt');
-      const username = localStorage.getItem('username');
-      if (token && username) {
-        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-        this.token = token;
-        this.username = username;
-      }
-    },
   },
 })
