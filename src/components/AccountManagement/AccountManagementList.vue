@@ -42,7 +42,7 @@
                         <td>{{ account.status }}</td>
                         <td>
                             <button class="btn btn-warning">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <button @click="softDelete(account.id)" class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -90,6 +90,15 @@ export default {
                 .catch(error => {
                     this.error = error;
                     this.loading = false;
+                });
+        },
+        softDelete(id) {
+            axios.delete("accounts/"+id)
+                .then(response => {
+                    this.fetchAccounts();
+                })
+                .catch(error => {
+                    this.error = error;
                 });
         },
         formatCurrency(value) {
