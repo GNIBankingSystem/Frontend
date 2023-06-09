@@ -29,6 +29,22 @@
 				<span class="text">Transactions</span>
 			</router-link>
 		</div>
+		<br>
+		<h3>Employee Menu</h3>
+		<div class="menu">
+			<router-link to="/accountmanagement" class="button">
+				<span class="material-icons">wallet</span>
+				<span class="text">Account management</span>
+			</router-link>
+			<router-link to="/transactionmanagement" class="button">
+				<span class="material-icons">receipt</span>
+				<span class="text">Transaction management</span>
+			</router-link>
+			<router-link to="/usermanagement" class="button">
+				<span class="material-icons">bar_chart</span>
+				<span class="text">User management</span>
+			</router-link>
+		</div>
 
 		<div class="flex"></div>
 		
@@ -44,6 +60,14 @@
 <script setup>
 import { ref } from 'vue'
 import logoURL from '../../assets/GNILogo.svg'
+import { useCounterStore } from '../../stores/counter.js'
+const store = useCounterStore()
+var role = false;
+if (store.role != null) {
+	if (store.role == "Admin" || store.role == "Employee") {
+		role = true;
+	}
+}
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 

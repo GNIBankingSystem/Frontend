@@ -45,7 +45,7 @@ export default {
 	--dark: #3C2E59;
 	--dark-alt: #2C294A;
 	--light: #f1f5f9;
-	--sidebar-width: 250px;
+	--sidebar-width: 300px;
 }
 
 * {
