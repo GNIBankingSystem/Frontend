@@ -7,13 +7,13 @@ import TransactionFilter from "./TransactionFilter.vue";
   <main id="transaction-page">
     <h1>Transactions</h1>
     <div class="col-12">
-      <TransactionFilter></TransactionFilter>
       <TransactionList></TransactionList>
+      <TransactionFilter></TransactionFilter>
     </div>
   </main>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @media (min-width: 1264px) {
   .col-12 {
     -webkit-box-flex: 0;

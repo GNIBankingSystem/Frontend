@@ -1,13 +1,18 @@
 <template>
   <main id="transaction-page">
-    <h3>Filter</h3>
+    <h3>Transaction on all accounts</h3>
     <div class="col-12">
       <div class="card">
         <div>
           <form class="filter-form">
             <div>
               <label for="iban">IBAN:</label>
-              <input type="text" id="iban" v-model="filter.iban" />
+              <input
+                type="text"
+                id="iban"
+                v-model="filter.iban"
+                placeholder="NL00 INHO 0123 4567 89"
+              />
             </div>
 
             <div>
@@ -36,11 +41,33 @@
             <button @click.prevent="submitForm">Submit</button>
           </form>
         </div>
+        <div class="card-body">
+          <Table class="table">
+            <thead>
+              <tr>
+                <th scope="col">From account</th>
+                <th scope="col">To account</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="transaction in transactions">
+                <td>{{ transaction.accountFrom }}</td>
+                <td>{{ transaction.accountTo }}</td>
+                <td>€ {{ transaction.amount }}</td>
+                <td>{{ formatDate(transaction.timestamp) }}</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
       </div>
     </div>
   </main>
 </template>
 <script>
+import axios from "../../axios-auth.js";
+import TransactionList from "./TransactionList.vue";
 export default {
   data() {
     return {
@@ -50,8 +77,13 @@ export default {
         endDate: "",
         comparison: "",
       },
+      selectedAccount: "",
     };
   },
+  mounted() {
+    this.selectedAccount = TransactionList.selectedAccount;
+  },
+
   methods: {
     submitForm() {
       // Use axios here to send `this.filter` to your backend.
@@ -61,7 +93,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .card {
   background-color: var(--dark);
   color: var(--light);
