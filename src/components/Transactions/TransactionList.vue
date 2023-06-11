@@ -1,12 +1,12 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <h1>Transactions of account:</h1>
+      <h1>Transactions of account: {{ selectedAccount }}</h1>
       <select
         name="account"
         id="account"
         v-model="selectedAccount"
-        @change="getTransactionsOnAccount(selectedAccount)"
+        @change="getTransactionsOnSelectedAccount(selectedAccount)"
       >
         <option v-for="account in accounts" :value="account.id">
           {{ account.type }} : {{ account.id }}
@@ -49,8 +49,9 @@ export default {
   },
   mounted() {
     this.userid = localStorage.getItem("id");
+    console.log(this.userId);
     this.getAccounts(this.userid);
-    this.getTransactionsOnAccount(this.selectedAccount);
+    this.getTransactionsSelectedOnAccount(this.selectedAccount);
   },
   methods: {
     async getAccounts(userId) {
@@ -64,10 +65,11 @@ export default {
         console.error(`Failed to fetch accounts: ${error.message}`);
       }
     },
-    async getTransactionsOnAccount(accountId) {
+    async getTransactionsOnSelectedAccount() {
       try {
-        console.log(accountId);
-        const response = await axios.get(`transactions?iban=${accountId}`);
+        const response = await axios.get(
+          `transactions?iban=${this.selectedAccount}`
+        );
         this.transactions = response.data;
       } catch (error) {
         console.error(`Failed to fetch transactions: ${error.message}`);

@@ -1,17 +1,19 @@
 <template>
   <main id="transaction-page">
-    <h3>Transaction on all accounts</h3>
+    <h3>Transactions on all accounts &#128269;</h3>
     <div class="col-12">
       <div class="card">
         <div>
           <form class="filter-form">
             <div>
+              <p>{{ message }}</p>
               <label for="iban">IBAN:</label>
               <input
                 type="text"
                 id="iban"
                 v-model="filter.iban"
                 placeholder="NL00 INHO 0123 4567 89"
+                @input="checkInput()"
               />
             </div>
 
@@ -33,7 +35,7 @@
                 v-model="filter.comparison"
               >
                 <option value="=">=</option>
-                <option value="<"></option>
+                <option value="<">&lt;</option>
                 <option value=">">></option>
               </select>
             </div>
@@ -78,6 +80,7 @@ export default {
         comparison: "",
       },
       selectedAccount: "",
+      message: "",
     };
   },
   mounted() {
@@ -86,8 +89,16 @@ export default {
 
   methods: {
     submitForm() {
-      // Use axios here to send `this.filter` to your backend.
       console.log(this.filter);
+    },
+    checkInput() {
+      const regex = /^[A-Z]{2}[0-9]{2} [A-Z]{4} [0-9]{4} [0-9]{4} [0-9]{2}$/;
+      if (regex.test(this.filter.iban)) {
+        this.message = "Input is in the correct format";
+      } else {
+        button.disabled = true;
+        this.message = "Input is not in the correct format";
+      }
     },
   },
 };

@@ -6,8 +6,8 @@ import TransactionFilter from "./TransactionFilter.vue";
 <template>
   <main id="transaction-page">
     <h1>Transactions</h1>
+    <TransactionList></TransactionList>
     <div class="col-12">
-      <TransactionList></TransactionList>
       <TransactionFilter></TransactionFilter>
     </div>
   </main>
