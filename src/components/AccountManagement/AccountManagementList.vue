@@ -27,9 +27,10 @@
                 <thead>
                     <tr>
                         <th scope="col">IBAN</th>
-                        <th scope="col">UserId</th>
+                        <th scope="col">User Id</th>
                         <th scope="col">Type</th>
                         <th scope="col">Balance</th>
+                        <th scope="col">Absolute Limit</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -40,6 +41,7 @@
                         <td>{{ account.userId }}</td>
                         <td>{{ account.type }}</td>
                         <td>{{ formatCurrency(account.balance) }}</td>
+                        <td>{{ account.absoluteLimit }}</td>
                         <td>{{ account.status }}</td>
                         <td>
                             <button @click="editAccount(account.id)" class="btn btn-warning">Edit account</button>
