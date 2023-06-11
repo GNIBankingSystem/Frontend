@@ -6,7 +6,7 @@
         name="account"
         id="account"
         v-model="selectedAccount"
-        @change="getTransactionsOnSelectedAccount(selectedAccount)"
+        @change="getTransactionsOnSelectedAccount()"
       >
         <option v-for="account in accounts" :value="account.id">
           {{ account.type }} : {{ account.id }}
@@ -38,6 +38,7 @@
 
 <script>
 import axios from "../../axios-auth.js";
+import { useCounterStore } from "../../stores/counter.js";
 export default {
   data() {
     return {
@@ -48,16 +49,22 @@ export default {
     };
   },
   mounted() {
-    this.userid = localStorage.getItem("id");
-    console.log(this.userId);
-    this.getAccounts(this.userid);
-    this.getTransactionsSelectedOnAccount(this.selectedAccount);
+    const store = useCounterStore();
+    const userId = store.$id;
+    this.getAccounts(userId);
+    this.getTransactionsOnSelectedAccount();
   },
   methods: {
-    async getAccounts(userId) {
+    getAccounts(userId) {
       try {
-        const response = await axios.get(`accounts?userId=${userId}`);
-        this.accounts = response.data;
+        axios
+          .get("accounts?userId=" + userId)
+          .then((response) => {
+            this.accounts = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         if (this.accounts.length > 0) {
           this.selectedAccount = this.accounts[0].id;
         }
