@@ -12,6 +12,8 @@
               <th scope="col">To account</th>
               <th scope="col">Amount</th>
               <th scope="col">Date</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -20,6 +22,28 @@
               <td>{{ transaction.accountTo }}</td>
               <td>€ {{ transaction.amount }}</td>
               <td>{{ formatDate(transaction.timestamp) }}</td>
+              <td>
+                <router-link
+                  :to="{
+                    name: 'EditTransaction',
+                    query: { id: transaction.id },
+                  }"
+                  class="btn btn-primary"
+                >
+                  Edit
+                </router-link>
+              </td>
+              <td>
+                <router-link
+                  :to="{
+                    name: 'DeleteTransaction',
+                    query: { id: transaction.id },
+                  }"
+                  class="btn btn-danger"
+                >
+                  Delete
+                </router-link>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -30,7 +54,7 @@
 
 <script>
 import axios from "../../axios-auth.js";
-
+import { useAccountStore } from "../../stores/store.js";
 export default {
   data() {
     return {
@@ -39,15 +63,13 @@ export default {
     };
   },
   mounted() {
-    this.selectedAccount = this.$route.query.iban;
-    console.log(this.selectedAccount);
-    this.getTransactionsOnSelectedAccount(this.selectedAccount);
+    this.getTransactionsOnSelectedAccount();
   },
   methods: {
     async getTransactionsOnSelectedAccount() {
       try {
         const response = await axios.get(
-          `transactions?iban=${this.selectedAccount}`
+          `transactions?iban=${this.accountInfo}`
         );
         this.transactions = response.data;
       } catch (error) {
@@ -57,6 +79,12 @@ export default {
     formatDate(dateString) {
       const options = { year: "numeric", month: "long", day: "numeric" };
       return new Date(dateString).toLocaleDateString(undefined, options);
+    },
+  },
+  computed: {
+    accountInfo() {
+      const store = useAccountStore();
+      return store.accountInfo;
     },
   },
 };

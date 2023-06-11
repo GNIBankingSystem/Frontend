@@ -28,10 +28,6 @@ export const useCounterStore = defineStore("counter", {
           this.role = res.data.role;
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + res.data.token;
-
-          localStorage.setItem("jwt", res.data.token);
-          localStorage.setItem("username", res.data.username);
-          localStorage.setItem("id", res.data.id);
         })
         .catch((error) => console.log(error));
     },

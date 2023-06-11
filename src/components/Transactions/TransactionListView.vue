@@ -1,15 +1,21 @@
-<script setup>
-import TransactionFilter from "./TransactionFilter.vue";
-import AccountSelect from "./AccountSelect.vue";
+<script>
+import TransacionList from "./TransactionList.vue";
+export default {
+  components: {
+    TransacionList,
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
+  },
+};
 </script>
-
 <template>
   <main id="transaction-page">
-    <h1>Transactions</h1>
-
     <div class="col-12">
-      <AccountSelect></AccountSelect>
-      <TransactionFilter></TransactionFilter>
+      <button @click="goBack">Go Back</button>
+      <TransacionList></TransacionList>
     </div>
   </main>
 </template>

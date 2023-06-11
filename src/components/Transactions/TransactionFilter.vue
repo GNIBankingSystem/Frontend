@@ -40,7 +40,9 @@
               </select>
             </div>
 
-            <button @click.prevent="submitForm">Submit</button>
+            <button :disabled="isButtonDisabled" @click.prevent="submitForm">
+              Submit
+            </button>
           </form>
         </div>
         <div class="card-body">
@@ -69,7 +71,6 @@
 </template>
 <script>
 import axios from "../../axios-auth.js";
-import TransactionList from "./TransactionList.vue";
 export default {
   data() {
     return {
@@ -81,11 +82,11 @@ export default {
       },
       selectedAccount: "",
       message: "",
+      isButtonDisabled: false,
+      transactions: [],
     };
   },
-  mounted() {
-    this.selectedAccount = TransactionList.selectedAccount;
-  },
+  mounted() {},
 
   methods: {
     submitForm() {
@@ -95,10 +96,15 @@ export default {
       const regex = /^[A-Z]{2}[0-9]{2} [A-Z]{4} [0-9]{4} [0-9]{4} [0-9]{2}$/;
       if (regex.test(this.filter.iban)) {
         this.message = "Input is in the correct format";
+        this.isButtonDisabled = false; // Enable the button
       } else {
-        button.disabled = true;
+        this.isButtonDisabled = true; // Disable the button
         this.message = "Input is not in the correct format";
       }
+    },
+    formatDate(dateString) {
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      return new Date(dateString).toLocaleDateString(undefined, options);
     },
   },
 };
