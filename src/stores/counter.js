@@ -25,7 +25,7 @@ export const useCounterStore = defineStore("counter", {
           this.username = res.data.username;
           this.token = res.data.token;
           this.id = res.data.id;
-          this.role = res.data.role;
+          this.role = res.data.roles;
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + res.data.token;
         })
