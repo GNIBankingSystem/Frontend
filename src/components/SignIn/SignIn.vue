@@ -1,9 +1,7 @@
 <script setup>
-import SignInItems from '../SignIn/SignInItems.vue';
-import SignInLogo from '../SignIn/SignInLogo.vue';
-import axios from '../../axios-auth.js';
-import { useCounterStore } from '../../stores/counter.js'
-const store = useCounterStore()
+import SignInItems from "../SignIn/SignInItems.vue";
+import SignInLogo from "../SignIn/SignInLogo.vue";
+import { useCounterStore } from "../../stores/counter.js";
 </script>
 
 <template>
@@ -15,13 +13,25 @@ const store = useCounterStore()
             <h2>Sign In</h2>
             <div class="mb-3">
               <label for="inputUsername" class="form-label">Username</label>
-              <input id="inputUsername" v-model="loginUsername" type="text" class="form-control" />
+              <input
+                id="inputUsername"
+                v-model="loginUsername"
+                type="text"
+                class="form-control"
+              />
             </div>
             <div class="mb-3">
               <label for="inputPassword" class="form-label">Password</label>
-              <input type="password" v-model="password" class="form-control" id="inputPassword" />
+              <input
+                type="password"
+                v-model="password"
+                class="form-control"
+                id="inputPassword"
+              />
             </div>
-            <button type='button' @click="login" class="btn btn-primary">Login</button><br>
+            <button type="button" @click="login" class="btn btn-primary">
+              Login</button
+            ><br />
             <a href="/signup">No account, register</a>
           </form>
         </div>
@@ -31,9 +41,8 @@ const store = useCounterStore()
 </template>
 
 <script>
-
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     return {
       loginUsername: "",
@@ -42,12 +51,12 @@ export default {
   },
   methods: {
     login() {
-      const store = useCounterStore()
+      const store = useCounterStore();
       store.login(this.loginUsername, this.password);
-      this.$router.push('/');
+      this.$router.push("/");
     },
   },
-}
+};
 </script>
 
 <style scoped>
